@@ -117,7 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CalisanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\YoneticiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -130,6 +132,9 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Yonetici\Index.cshtml" />
+    <Content Include="Views\Calisan\CalisanEkle.cshtml" />
+    <Content Include="Views\Calisan\CalisanDetay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -140,6 +145,16 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TelefonRehberi.BLL\TelefonRehberi.BLL.csproj">
+      <Project>{3404F560-1027-401A-B4E3-0E6A985A739F}</Project>
+      <Name>TelefonRehberi.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TelefonRehberi.DATA\TelefonRehberi.DATA.csproj">
+      <Project>{60036731-f686-4727-b763-434c31900eec}</Project>
+      <Name>TelefonRehberi.DATA</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

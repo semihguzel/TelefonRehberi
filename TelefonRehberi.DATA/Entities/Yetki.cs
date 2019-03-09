@@ -11,7 +11,7 @@ namespace TelefonRehberi.DATA.Entities
         public int YetkiID { get; set; }
         public string YetkiAdi { get; set; }
 
-        public List<CalisanDetay> CalisanDetaylari { get; set; }
+        public virtual List<CalisanDetay> CalisanDetaylari { get; set; }
 
     }
 }

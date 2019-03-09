@@ -1,0 +1,42 @@
+﻿@model TelefonRehberi.DATA.Entities.CalisanDetay
+@{
+    ViewBag.Title = "CalisanDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Calisan Detay Bilgileri</h2>
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Calisan Adi</th>
+                    <th>Calisan Soyadi</th>
+                    <th>Calisan Telefonu</th>
+                    <th>Cinsiyet</th>
+                    <th>Adres</th>
+                    <th>Departman Adi</th>
+                    <th>Yetkisi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    <tr>
+                        <td>@Model.Calisan.CalisanAdi</td>
+                        <td>@Model.Calisan.CalisanSoyadi</td>
+                        <td>@Model.Calisan.Telefon</td>
+                        <td>@(Model.Cinsiyet ? "Erkek" : "Kadin")</td>
+                        <td>@Model.Adres</td>
+                        <td>@Model.Departman.DepartmanAdi</td>
+                        <td>@Model.Yetki.YetkiAdi</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="@Url.Action("Index","Home")" class="btn btn-info">Listeye Geri Don</a>
+    </div>
+</div>
+
+

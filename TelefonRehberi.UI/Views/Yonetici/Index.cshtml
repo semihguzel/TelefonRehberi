@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TelefonRehberi.DATA.Entities.Calisan>
+﻿
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,29 +14,27 @@
                     <th>Calisan Adi</th>
                     <th>Calisan Soyadi</th>
                     <th>Calisan Telefonu</th>
+                    <th>Calisan Islemleri</th>
                 </tr>
             </thead>
             <tbody>
                 @{
-                    var calisanDetayConcrete = new TelefonRehberi.BLL.Repository.Concrete.CalisanDetayConcrete();
                     foreach (var item in Model)
                     {
                         <tr>
-                            @if (calisanDetayConcrete._calisanDetayRepository.GetById(item.CalisanID) != null)
-                            {
-                                <td><a href="@Url.Action("CalisanDetay","Calisan",new { id = item.CalisanID})">@item.CalisanAdi</a></td>
-                            }
-                            else
-                            {
-                                <td><span>@item.CalisanAdi</span></td>
-                            }
+                            <td><a href="@Url.Action("CalisanDetay","Calisan",item.CalisanID)">@item.CalisanAdi</a></td>
                             <td>@item.CalisanSoyadi</td>
                             <td>@item.Telefon</td>
+                            <td>
+                                <a href="@Url.Action("CalisanDuzenle","Calisan",item.CalisanID)" class="btn btn-info">Duzenle</a>
+                                <a href="@Url.Action("CalisanSil","Calisan",item.CalisanID)" class="btn btn-danger">Sil</a>
+                            </td>
                         </tr>
                     }
                 }
             </tbody>
         </table>
+        <a style="float:right" href="@Url.Action("CalisanEkle","Calisan")" class="btn btn-success">Calisan Ekle</a>
     </div>
 </div>
 

@@ -13,11 +13,11 @@ namespace TelefonRehberi.DATA.Entities
         public string Adres { get; set; }
 
         public int DepartmanID { get; set; }
-        public Departman Departman { get; set; }
+        public virtual Departman Departman { get; set; }
 
         public int YetkiID { get; set; }
-        public Yetki Yetki { get; set; }
+        public virtual Yetki Yetki { get; set; }
 
-        public Calisan Calisan { get; set; }
+        public virtual Calisan Calisan { get; set; }
     }
 }

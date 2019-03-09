@@ -13,14 +13,14 @@ namespace TelefonRehberi.BLL.Repository.Concrete
     public class CalisanConcrete : ICalisan
     {
         public IRepository<Calisan> _calisanRepository;
-        public IUnitOfWork __calisanUnitOfWork;
+        public IUnitOfWork _calisanUnitOfWork;
         private DbContext _dbContext;
 
         public CalisanConcrete()
         {
             _dbContext = new Context();
-            __calisanUnitOfWork = new EFUnitOfWork(_dbContext);
-            _calisanRepository = __calisanUnitOfWork.GetRepository<Calisan>();
+            _calisanUnitOfWork = new EFUnitOfWork(_dbContext);
+            _calisanRepository = _calisanUnitOfWork.GetRepository<Calisan>();
         }
     }
 }

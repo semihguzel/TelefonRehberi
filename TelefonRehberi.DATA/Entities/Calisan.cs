@@ -13,6 +13,6 @@ namespace TelefonRehberi.DATA.Entities
         public string CalisanSoyadi { get; set; }
         public string Telefon { get; set; }
 
-        public CalisanDetay CalisanDetay { get; set; }
+        public virtual CalisanDetay CalisanDetay { get; set; }
     }
 }

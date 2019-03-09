@@ -7,20 +7,14 @@ using TelefonRehberi.BLL.Repository.Concrete;
 
 namespace TelefonRehberi.UI.Controllers
 {
-    public class HomeController : Controller
+    public class YoneticiController : Controller
     {
+        //View ve gerekli islemler yapilmadi.
         public ActionResult Index()
         {
             CalisanConcrete calisanConcrete = new CalisanConcrete();
-
-            if (Session["KullaniciAdi"] == null)
-            {
-                return View(calisanConcrete._calisanRepository.GetAll());
-            }
-            else
-            {
-                return RedirectToAction("Index", "Admin");
-            }
+            return View(calisanConcrete._calisanRepository.GetAll());
         }
+
     }
 }
