@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Giris";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Yonetici Girisi</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @using (Html.BeginForm("Giris", "Yonetici", FormMethod.Post))
+        {
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Kullanici Adi: </label>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" required name="username" placeholder="Kullanici Adi Giriniz..." class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Sifre: </label>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="password" required name="password" placeholder="Sifre Giriniz..." class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-2">
+                        <input type="submit" value="Giris Yap" class="form-control btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

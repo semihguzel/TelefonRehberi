@@ -24,7 +24,7 @@
                         <tr>
                             @if (calisanDetayConcrete._calisanDetayRepository.GetById(item.CalisanID) != null)
                             {
-                                <td><a href="@Url.Action("CalisanDetay","Calisan",new { id = item.CalisanID})">@item.CalisanAdi</a></td>
+                                <td><a href="@Url.Action("CalisanDetayi","Calisan",new { id = item.CalisanID})">@item.CalisanAdi</a></td>
                             }
                             else
                             {

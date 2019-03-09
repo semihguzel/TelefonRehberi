@@ -16,5 +16,21 @@ namespace TelefonRehberi.UI.Controllers
             return View(calisanConcrete._calisanRepository.GetAll());
         }
 
+        public ActionResult Giris()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Giris(FormCollection frm)
+        {
+            string kullaniciAdi = frm["username"];
+            string sifre = frm["password"];
+
+            YoneticiConcrete yoneticiConcrete = new YoneticiConcrete();
+            if (yoneticiConcrete.Login(kullaniciAdi, sifre))
+                return RedirectToAction("Index", "Yonetici");
+            else
+                return View();
+        }
     }
 }

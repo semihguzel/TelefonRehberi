@@ -45,6 +45,67 @@
 
             <div class="form-group">
                 <div class="row">
+                    <div class="col-md-2">
+                        <label>Cinsiyet: </label>
+                    </div>
+                    <div class="col-md-10">
+                        <input id="gender" type="checkbox" value="true" name="gender" />
+                        <input type="hidden" value="false" name="gender" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Adres: </label>
+                    </div>
+                    <div class="col-md-10">
+                        <textarea name="address" placeholder="Adresinizi Giriniz..." class="form-control" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Departman Adi: </label>
+                    </div>
+                    <div class="col-md-10">
+                        <select name="departmentId">
+                            @{
+                                var departmanConcrete = new TelefonRehberi.BLL.Repository.Concrete.DepartmanConcrete();
+                                foreach (var item in departmanConcrete._departmanRepository.GetAll())
+                                {
+                                    <option value="@item.DepartmanID">@item.DepartmanAdi</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Yetkisi: </label>
+                    </div>
+                    <div class="col-md-10">
+                        <select name="authorizationId">
+                            @{
+                                var yetkiConcrete = new TelefonRehberi.BLL.Repository.Concrete.YetkiConcrete();
+                                foreach (var item in yetkiConcrete._yetkiRepository.GetAll())
+                                {
+                                    <option value="@item.YetkiID">@item.YetkiAdi</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
                     <div class="col-md-10 col-md-offset-2">
                         <input type="submit" value="Kaydet" class="form-control btn btn-success" />
                     </div>

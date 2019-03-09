@@ -22,5 +22,14 @@ namespace TelefonRehberi.BLL.Repository.Concrete
             _yoneticiUnitOfWork = new EFUnitOfWork(_dbContext);
             _yoneticiRepository = _yoneticiUnitOfWork.GetRepository<Yonetici>();
         }
+
+        public bool Login(string username, string password)
+        {
+           var user = _yoneticiRepository.GetEntity().FirstOrDefault(x => x.KullaniciAdi == username && x.Sifre == password);
+            if (user == null)
+                return false;
+            else
+                return true;
+        }
     }
 }

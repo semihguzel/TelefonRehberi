@@ -10,11 +10,11 @@ namespace TelefonRehberi.UI.Controllers
 {
     public class CalisanController : Controller
     {
-        //TODO : View'i yapilmadi
         CalisanConcrete calisanConcrete;
         CalisanDetayConcrete calisanDetayConcrete;
-        public ActionResult CalisanDetay(int id)
+        public ActionResult CalisanDetayi(int id)
         {
+            //TODO : View'i yapilmadi
             calisanDetayConcrete = new CalisanDetayConcrete();
             var calisan = calisanDetayConcrete._calisanDetayRepository.GetById(id);
             return View(calisan);
@@ -35,12 +35,33 @@ namespace TelefonRehberi.UI.Controllers
                 Telefon = frm["telephone"]
             };
 
-            calisanConcrete = new CalisanConcrete();
-            calisanConcrete._calisanRepository.Insert(calisan);
-            calisanConcrete._calisanUnitOfWork.SaveChanges();
-            calisanConcrete._calisanUnitOfWork.Dispose();
+            CalisanDetay calisanDetay = new CalisanDetay()
+            {
+                Cinsiyet = frm["gender"] == "false" ? false : true,
+                Adres = frm["address"],
+                DepartmanID = int.Parse(frm["departmentId"]),
+                YetkiID = int.Parse(frm["authorizationId"]),
+            };
+            calisanDetay.CalisanID = calisan.CalisanID;
+            if (calisan.Telefon.Length > 13)
+            {
+                return RedirectToAction("CalisanEkle");
+            }
+            else
+            {
+                calisanConcrete = new CalisanConcrete();
+                calisanDetayConcrete = new CalisanDetayConcrete();
 
-            return RedirectToAction("Index", "Admin");
+                calisanConcrete._calisanRepository.Insert(calisan);
+                calisanConcrete._calisanUnitOfWork.SaveChanges();
+                calisanConcrete._calisanUnitOfWork.Dispose();
+
+                calisanDetayConcrete._calisanDetayRepository.Insert(calisanDetay);
+                calisanDetayConcrete._calisanDetayUnitOfWork.SaveChanges();
+                calisanDetayConcrete._calisanDetayUnitOfWork.Dispose();
+
+                return RedirectToAction("Index", "Yonetici");
+            }
         }
     }
 }

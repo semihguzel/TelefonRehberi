@@ -135,6 +135,7 @@
     <Content Include="Views\Yonetici\Index.cshtml" />
     <Content Include="Views\Calisan\CalisanEkle.cshtml" />
     <Content Include="Views\Calisan\CalisanDetay.cshtml" />
+    <Content Include="Views\Yonetici\Giris.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
