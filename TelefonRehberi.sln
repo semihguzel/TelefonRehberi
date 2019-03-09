@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelefonRehberi.UI", "TelefonRehberi.UI\TelefonRehberi.UI.csproj", "{53C5982D-0D67-4399-9413-176FFB08897C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelefonRehberi.DATA", "TelefonRehberi.DATA\TelefonRehberi.DATA.csproj", "{60036731-F686-4727-B763-434C31900EEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelefonRehberi.DAL", "TelefonRehberi.DAL\TelefonRehberi.DAL.csproj", "{33F1BC70-6B9D-4A75-850A-CB04ACD486E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{53C5982D-0D67-4399-9413-176FFB08897C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53C5982D-0D67-4399-9413-176FFB08897C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53C5982D-0D67-4399-9413-176FFB08897C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60036731-F686-4727-B763-434C31900EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60036731-F686-4727-B763-434C31900EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60036731-F686-4727-B763-434C31900EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60036731-F686-4727-B763-434C31900EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33F1BC70-6B9D-4A75-850A-CB04ACD486E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33F1BC70-6B9D-4A75-850A-CB04ACD486E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33F1BC70-6B9D-4A75-850A-CB04ACD486E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33F1BC70-6B9D-4A75-850A-CB04ACD486E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
