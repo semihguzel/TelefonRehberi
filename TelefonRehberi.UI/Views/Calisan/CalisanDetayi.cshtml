@@ -15,39 +15,47 @@
                     <th>Calisan Soyadi</th>
                     <th>Calisan Telefonu</th>
                     <th>Calisan Departmani</th>
-                    <th>Calisan Yetkisi</th>
+                    <th>Calisanın Üstü</th>
                 </tr>
             </thead>
             <tbody>
                 @{
                     var calisanDetayConcrete = new TelefonRehberi.BLL.Repository.Concrete.CalisanDetayConcrete();
 
-                        var calisanDetay = calisanDetayConcrete._calisanDetayRepository.GetById(Model.CalisanID);
-                        <tr>
-                            @if (calisanDetayConcrete._calisanDetayRepository.GetById(Model.CalisanID) != null)
+                    var calisanDetay = calisanDetayConcrete._calisanDetayRepository.GetById(Model.CalisanID);
+                    <tr>
+                        @if (calisanDetayConcrete._calisanDetayRepository.GetById(Model.CalisanID) != null)
+                        {
+                            <td><a href="@Url.Action("CalisanDetayi","Calisan",new { id = Model.CalisanID})">@Model.Calisan.CalisanAdi</a></td>
+                        }
+                        else
+                        {
+                            <td><span>@Model.Calisan.CalisanAdi</span></td>
+                        }
+                        <td>@Model.Calisan.CalisanSoyadi</td>
+                        <td>@Model.Calisan.Telefon</td>
+                        @{
+
+                            if (calisanDetay == null)
                             {
-                                <td><a href="@Url.Action("CalisanDetayi","Calisan",new { id = Model.CalisanID})">@Model.Calisan.CalisanAdi</a></td>
+                                <td>-</td>
+                                <td>-</td>
                             }
                             else
                             {
-                                <td><span>@Model.Calisan.CalisanAdi</span></td>
-                            }
-                            <td>@Model.Calisan.CalisanSoyadi</td>
-                            <td>@Model.Calisan.Telefon</td>
-                            @{
-
-                                if (calisanDetay == null)
+                                <td>@Model.Departman.DepartmanAdi</td>
+                                if (Model.Calisan.UstCalisan == null)
                                 {
-                                    <td>-</td>
                                     <td>-</td>
                                 }
                                 else
                                 {
-                                    <td>@Model.Departman.DepartmanAdi</td>
-                                    <td>@Model.Yetki.YetkiAdi</td>
+                                    <td>@Model.Calisan.UstCalisan.CalisanAdi</td>
+
                                 }
                             }
-                        </tr>
+                        }
+                    </tr>
                 }
             </tbody>
         </table>

@@ -28,7 +28,7 @@
                                 <a href="@Url.Action("DepartmanGuncelle","Departman",new { id = item.DepartmanID})" class="btn btn-info">Departman Düzenle</a>
                                 @if (TelefonRehberi.BLL.Controls.DepartmanKontrol.DepartmanSil(item))
                                 {
-                                    <a href="@Url.Action("DepartmanSil","Departman",new { id = item.DepartmanID})" class="btn btn-info">Departman Sil</a>
+                                    <a href="@Url.Action("DepartmanSil","Departman",new { id = item.DepartmanID})" class="btn btn-danger">Departman Sil</a>
                                 }
                                 else
                                 {

@@ -22,54 +22,63 @@
             <tbody>
                 @{
                     var calisanDetayConcrete = new TelefonRehberi.BLL.Repository.Concrete.CalisanDetayConcrete();
+                    var calisanConcrete = new TelefonRehberi.BLL.Repository.Concrete.CalisanConcrete();
                     foreach (var item in Model)
                     {
                         var calisanDetay = calisanDetayConcrete._calisanDetayRepository.GetById(item.CalisanID);
-                        <tr>
-                            @if (calisanDetayConcrete._calisanDetayRepository.GetById(item.CalisanID) != null)
+                <tr>
+                    @if (calisanDetayConcrete._calisanDetayRepository.GetById(item.CalisanID) != null)
+                    {
+                        <td><a href="@Url.Action("CalisanDetayi","Calisan",new { id = item.CalisanID})">@item.CalisanAdi</a></td>
+                    }
+                    else
+                    {
+                        <td><span>@item.CalisanAdi</span></td>
+                    }
+                    <td>@item.CalisanSoyadi</td>
+                    <td>@item.Telefon</td>
+                    @{
+
+                        if (calisanDetay == null)
+                        {
+                            <td>-</td>
+                            <td>-</td>
+                        }
+                        else
+                        {
+                            <td>@item.CalisanDetay.Departman.DepartmanAdi</td>
+                            if (item.UstCalisan == null)
                             {
-                                <td><a href="@Url.Action("CalisanDetayi","Calisan",new { id = item.CalisanID})">@item.CalisanAdi</a></td>
+                                <td>-</td>
                             }
                             else
                             {
-                                <td><span>@item.CalisanAdi</span></td>
+                                <td>@item.UstCalisan.CalisanAdi</td>
+
                             }
-                            <td>@item.CalisanSoyadi</td>
-                            <td>@item.Telefon</td>
-                            @{
+                        }
+                    }
+                    <td>
+                        @if (calisanDetayConcrete._calisanDetayRepository.GetById(item.CalisanID) == null)
+                        {
+                            <a href="@Url.Action("CalisanDuzenle","Calisan",new { id = item.CalisanID})" class="btn btn-info">Calisan Detay Ekle</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("CalisanDuzenle","Calisan",new { id = item.CalisanID})" class="btn btn-info">Duzenle</a>
+                        }
 
-                                if (calisanDetay == null)
-                                {
-                                    <td>-</td>
-                                    <td>-</td>
-                                }
-                                else
-                                {
-                                    <td>@item.CalisanDetay.Departman.DepartmanAdi</td>
-                                    <td>@item.CalisanDetay.Yetki.YetkiAdi</td>
-                                }
-                            }
-                            <td>
-                                @if (calisanDetayConcrete._calisanDetayRepository.GetById(item.CalisanID) == null)
-                                {
-                                    <a href="@Url.Action("CalisanDuzenle","Calisan",new { id = item.CalisanID})" class="btn btn-info">Calisan Detay Ekle</a>
-                                }
-                                else
-                                {
-                                    <a href="@Url.Action("CalisanDuzenle","Calisan",new { id = item.CalisanID})" class="btn btn-info">Duzenle</a>
-                                }
+                        @if (!calisanConcrete.DoesEmployeeHaveSubordinate(item))
+                        {
+                            <a href="@Url.Action("CalisanSil","Calisan",new { id = item.CalisanID})" class="btn btn-danger">Sil</a>
+                        }
+                        else
+                        {
+                            <input type="button" class="btn btn-default" value="Silinemez" />
+                        }
 
-                                @if (TelefonRehberi.BLL.Controls.YetkiKontrol.KullaniciSil(item))
-                                {
-                                    <a href="@Url.Action("CalisanSil","Calisan",new { id = item.CalisanID})" class="btn btn-danger">Sil</a>
-                                }
-                                else
-                                {
-                                    <input type="button" class="btn btn-default" value="Silinemez" />
-                                }
-
-                            </td>
-                        </tr>
+                    </td>
+                </tr>
                     }
                 }
             </tbody>

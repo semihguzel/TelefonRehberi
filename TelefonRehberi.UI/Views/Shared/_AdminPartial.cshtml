@@ -11,7 +11,10 @@
                 <a href="@Url.Action("DepartmanIndex","Departman")">Departman İşlemleri</a>
             </li>
             <li>
-                <a href="@Url.Action("YoneticiGuncelle","Yonetici")">Yonetici İşlemleri</a>
+                @{ 
+                    var yoneticiConcrete = new TelefonRehberi.BLL.Repository.Concrete.YoneticiConcrete();
+                }
+                <a href="@Url.Action("YoneticiGuncelle","Yonetici",new { id = yoneticiConcrete.GetIDByName(Session["KullaniciAdi"].ToString())})">Yonetici İşlemleri</a>
             </li>
         </ul>
     </div>

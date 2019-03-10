@@ -93,10 +93,11 @@
                     <div class="col-md-10">
                         <select name="authorizationId">
                             @{
-                                var yetkiConcrete = new TelefonRehberi.BLL.Repository.Concrete.YetkiConcrete();
-                                foreach (var item in yetkiConcrete._yetkiRepository.GetAll())
+                                <option value="">-</option>
+                                var calisanConcrete = new TelefonRehberi.BLL.Repository.Concrete.CalisanConcrete();
+                                foreach (var item in calisanConcrete._calisanRepository.GetAll())
                                 {
-                                    <option value="@item.YetkiID">@item.YetkiAdi</option>
+                                    <option value="@item.CalisanID">@item.CalisanAdi</option>
                                 }
                             }
                         </select>

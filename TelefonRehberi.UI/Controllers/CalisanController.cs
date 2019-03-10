@@ -15,7 +15,6 @@ namespace TelefonRehberi.UI.Controllers
         DepartmanConcrete departmanConcrete;
         public ActionResult CalisanDetayi(int id)
         {
-            //TODO : View'i yapilmadi
             calisanDetayConcrete = new CalisanDetayConcrete();
             var calisan = calisanDetayConcrete._calisanDetayRepository.GetById(id);
             return View(calisan);
@@ -30,12 +29,12 @@ namespace TelefonRehberi.UI.Controllers
         [HttpPost]
         public ActionResult CalisanEkle(FormCollection frm)
         {
-            Calisan calisan = new Calisan()
-            {
-                CalisanAdi = frm["name"],
-                CalisanSoyadi = frm["surname"],
-                Telefon = frm["telephone"]
-            };
+            Calisan calisan = new Calisan();
+            calisan.CalisanAdi = frm["name"];
+            calisan.CalisanSoyadi = frm["surname"];
+            calisan.Telefon = frm["telephone"];
+            if (frm["authorizationId"] != "")
+                calisan.UstCalisanID = Convert.ToInt32(frm["authorizationId"]);
 
             CalisanDetay calisanDetay = new CalisanDetay()
             {
@@ -72,6 +71,7 @@ namespace TelefonRehberi.UI.Controllers
             departmanConcrete = new DepartmanConcrete();
 
             ViewBag.DepartmanListesi = departmanConcrete._departmanRepository.GetAll();
+            ViewBag.CalisanListesi = calisanConcrete._calisanRepository.GetEntity().Where(x => x.CalisanID != id).ToList();
 
             return View(calisanConcrete._calisanRepository.GetById(id));
         }
@@ -80,12 +80,16 @@ namespace TelefonRehberi.UI.Controllers
         {
             calisanConcrete = new CalisanConcrete();
             calisanDetayConcrete = new CalisanDetayConcrete();
+            var calisanId = frm["CalisanID"].Split(',');
 
-            var calisan = calisanConcrete._calisanRepository.GetById(Convert.ToInt32(frm["CalisanID"]));
+            var calisan = calisanConcrete._calisanRepository.GetById(int.Parse(calisanId[0]));
 
             calisan.CalisanAdi = frm["CalisanAdi"];
             calisan.CalisanSoyadi = frm["CalisanSoyadi"];
             calisan.Telefon = frm["Telefon"];
+            if (frm["UstCalisanID"] != "")
+                calisan.UstCalisanID = int.Parse(calisanId[1]);
+
 
             var calisanDetay = calisanDetayConcrete._calisanDetayRepository.GetById(calisan.CalisanID);
             if (calisanDetay == null)
@@ -105,6 +109,7 @@ namespace TelefonRehberi.UI.Controllers
                     calisanDetay.CalisanID = calisan.CalisanID;
                     calisanDetayConcrete._calisanDetayRepository.Insert(calisanDetay);
                 }
+
                 calisanConcrete._calisanUnitOfWork.SaveChanges();
                 calisanConcrete._calisanUnitOfWork.Dispose();
                 calisanDetayConcrete._calisanDetayUnitOfWork.SaveChanges();

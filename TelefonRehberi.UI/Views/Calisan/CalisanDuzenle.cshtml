@@ -75,7 +75,6 @@
                     </div>
                     <div class="col-md-10">
                         @Html.DropDownListFor(x => x.CalisanDetay.DepartmanID, new SelectList(ViewBag.DepartmanListesi, "DepartmanID", "DepartmanAdi"))
-
                     </div>
                 </div>
             </div>
@@ -86,9 +85,7 @@
                         <label>Yetkisi: </label>
                     </div>
                     <div class="col-md-10">
-
-                        @Html.DropDownListFor(x => x.CalisanDetay.YetkiID, new SelectList(ViewBag.YetkiListesi, "YetkiID", "YetkiAdi"))
-
+                        @Html.DropDownListFor(x => x.CalisanID, new SelectList(ViewBag.CalisanListesi, "CalisanID", "CalisanAdi"),"-")
                     </div>
                 </div>
             </div>

@@ -17,7 +17,6 @@ namespace TelefonRehberi.UI.Controllers
                 return RedirectToAction("Giris", "Yonetici");
             else
             {
-
                 CalisanConcrete calisanConcrete = new CalisanConcrete();
 
                 return View(calisanConcrete._calisanRepository.GetAll());

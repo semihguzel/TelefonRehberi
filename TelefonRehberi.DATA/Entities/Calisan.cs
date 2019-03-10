@@ -15,7 +15,7 @@ namespace TelefonRehberi.DATA.Entities
         public string Telefon { get; set; }
 
         [ForeignKey("Calisanlar")]
-        public int UstCalisanID { get; set; }
+        public int? UstCalisanID { get; set; }
         public virtual Calisan UstCalisan { get; set; }
 
 

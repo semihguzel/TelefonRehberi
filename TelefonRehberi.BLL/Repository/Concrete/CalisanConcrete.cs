@@ -22,5 +22,14 @@ namespace TelefonRehberi.BLL.Repository.Concrete
             _calisanUnitOfWork = new EFUnitOfWork(_dbContext);
             _calisanRepository = _calisanUnitOfWork.GetRepository<Calisan>();
         }
+
+        public bool DoesEmployeeHaveSubordinate(Calisan calisan)
+        {
+            var employeeSubordinateCount = _calisanRepository.GetEntity().Where(x => x.UstCalisanID == calisan.CalisanID).Count();
+            if (employeeSubordinateCount >= 1)
+                return true;
+            else
+                return false;
+        }
     }
 }
