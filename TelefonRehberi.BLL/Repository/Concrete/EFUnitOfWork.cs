@@ -31,7 +31,7 @@ namespace TelefonRehberi.BLL.Repository.Concrete
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.InnerException.Message);
+                throw new Exception(ex.ToString());
             }
         }
 

@@ -25,13 +25,23 @@
                             }
                             else
                             {
-                                <a class="navbar-brand" href="@Url.Action("Index","Home")">Telefon Rehberi</a>
+                                <a class="navbar-brand" href="@Url.Action("Index","Yonetici")">Telefon Rehberi</a>
                             }
                         }
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="@Url.Action("Giris","Yonetici")">Admin Girisi <span class="sr-only">(current)</span></a></li>
+                            @{
+                                if (Session["KullaniciAdi"] == null)
+                                {
+                                    <li><a href="@Url.Action("Giris","Yonetici")">Admin Girisi <span class="sr-only">(current)</span></a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("YoneticiGuncelle","Yonetici")">@Session["KullaniciAdi"]<span class="sr-only">(current)</span></a></li>
+                                }
+                            }
+
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div><!--/.container-fluid -->

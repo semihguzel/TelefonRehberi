@@ -12,9 +12,15 @@ namespace TelefonRehberi.UI.Controllers
         //View ve gerekli islemler yapilmadi.
         public ActionResult Index()
         {
+            if (Session["KullaniciAdi"] == null)
+                return RedirectToAction("Index", "Home");
+            else
+            {
+
             CalisanConcrete calisanConcrete = new CalisanConcrete();
 
             return View(calisanConcrete._calisanRepository.GetAll());
+            }
         }
 
         public ActionResult Giris()
@@ -29,7 +35,10 @@ namespace TelefonRehberi.UI.Controllers
 
             YoneticiConcrete yoneticiConcrete = new YoneticiConcrete();
             if (yoneticiConcrete.Login(kullaniciAdi, sifre))
+            {
+                Session["KullaniciAdi"] = kullaniciAdi;
                 return RedirectToAction("Index", "Yonetici");
+            }
             else
                 return View();
         }

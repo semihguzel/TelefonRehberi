@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CalisanController.cs" />
+    <Compile Include="Controllers\DepartmanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\YoneticiController.cs" />
     <Compile Include="Global.asax.cs">
@@ -138,6 +139,7 @@
     <Content Include="Views\Calisan\CalisanDetay.cshtml" />
     <Content Include="Views\Yonetici\Giris.cshtml" />
     <Content Include="Views\Calisan\CalisanDuzenle.cshtml" />
+    <Content Include="Views\Departman\Departman.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

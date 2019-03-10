@@ -44,7 +44,6 @@ namespace TelefonRehberi.UI.Controllers
                 DepartmanID = int.Parse(frm["departmentId"]),
                 YetkiID = int.Parse(frm["authorizationId"]),
             };
-            calisanDetay.CalisanID = calisan.CalisanID;
             if (calisan.Telefon.Length > 13)
             {
                 return RedirectToAction("CalisanEkle");
@@ -57,6 +56,8 @@ namespace TelefonRehberi.UI.Controllers
                 calisanConcrete._calisanRepository.Insert(calisan);
                 calisanConcrete._calisanUnitOfWork.SaveChanges();
                 calisanConcrete._calisanUnitOfWork.Dispose();
+
+                calisanDetay.CalisanID = calisan.CalisanID;
 
                 calisanDetayConcrete._calisanDetayRepository.Insert(calisanDetay);
                 calisanDetayConcrete._calisanDetayUnitOfWork.SaveChanges();
@@ -80,8 +81,6 @@ namespace TelefonRehberi.UI.Controllers
         [HttpPost]
         public ActionResult CalisanDuzenle(int id, FormCollection frm)
         {
-            var temp = frm["CalisanDetay.Cinsiyet"];
-
             calisanConcrete = new CalisanConcrete();
             calisanDetayConcrete = new CalisanDetayConcrete();
 
@@ -92,27 +91,51 @@ namespace TelefonRehberi.UI.Controllers
             calisan.Telefon = frm["Telefon"];
 
             var calisanDetay = calisanDetayConcrete._calisanDetayRepository.GetById(calisan.CalisanID);
-
+            if (calisanDetay == null)
+                calisanDetay = new CalisanDetay();
             calisanDetay.Cinsiyet = frm["CalisanDetay.Cinsiyet"] == "false" ? false : true;
             calisanDetay.Adres = frm["CalisanDetay.Adres"];
             calisanDetay.DepartmanID = int.Parse(frm["CalisanDetay.DepartmanID"]);
             calisanDetay.YetkiID = int.Parse(frm["CalisanDetay.YetkiID"]);
-            calisanDetay.CalisanID = calisan.CalisanID;
 
             if (calisan.Telefon.Length > 13)
             {
-                return RedirectToAction("CalisanDuzenle",new {id = calisan.CalisanID });
+                return RedirectToAction("CalisanDuzenle", new { id = calisan.CalisanID });
             }
             else
             {
+                if (calisanDetay.CalisanID == 0)
+                {
+                    calisanDetay.CalisanID = calisan.CalisanID;
+                    calisanDetayConcrete._calisanDetayRepository.Insert(calisanDetay);
+                }
                 calisanConcrete._calisanUnitOfWork.SaveChanges();
                 calisanConcrete._calisanUnitOfWork.Dispose();
-
                 calisanDetayConcrete._calisanDetayUnitOfWork.SaveChanges();
                 calisanDetayConcrete._calisanDetayUnitOfWork.Dispose();
 
                 return RedirectToAction("Index", "Yonetici");
             }
         }
+
+        public ActionResult CalisanSil(int id)
+        {
+            calisanConcrete = new CalisanConcrete();
+            calisanDetayConcrete = new CalisanDetayConcrete();
+
+            var silinecekCalisan = calisanConcrete._calisanRepository.GetById(id);
+            if (silinecekCalisan != null)
+            {
+                calisanDetayConcrete._calisanDetayRepository.Delete(silinecekCalisan.CalisanID);
+                calisanDetayConcrete._calisanDetayUnitOfWork.SaveChanges();
+                calisanDetayConcrete._calisanDetayUnitOfWork.Dispose();
+
+                calisanConcrete._calisanRepository.Delete(silinecekCalisan);
+                calisanConcrete._calisanUnitOfWork.SaveChanges();
+                calisanConcrete._calisanUnitOfWork.Dispose();
+            }
+            return RedirectToAction("Index", "Yonetici");
+        }
+
     }
 }

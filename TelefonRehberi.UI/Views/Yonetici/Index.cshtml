@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<TelefonRehberi.DATA.Entities.Calisan>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,6 +14,8 @@
                     <th>Calisan Adi</th>
                     <th>Calisan Soyadi</th>
                     <th>Calisan Telefonu</th>
+                    <th>Calisan Departmani</th>
+                    <th>Calisan Yetkisi</th>
                     <th>Calisan Islemleri</th>
                 </tr>
             </thead>
@@ -22,6 +24,7 @@
                     var calisanDetayConcrete = new TelefonRehberi.BLL.Repository.Concrete.CalisanDetayConcrete();
                     foreach (var item in Model)
                     {
+                        var calisanDetay = calisanDetayConcrete._calisanDetayRepository.GetById(item.CalisanID);
                         <tr>
                             @if (calisanDetayConcrete._calisanDetayRepository.GetById(item.CalisanID) != null)
                             {
@@ -33,6 +36,19 @@
                             }
                             <td>@item.CalisanSoyadi</td>
                             <td>@item.Telefon</td>
+                            @{
+
+                                if (calisanDetay == null)
+                                {
+                                    <td>-</td>
+                                    <td>-</td>
+                                }
+                                else
+                                {
+                                    <td>@item.CalisanDetay.Departman.DepartmanAdi</td>
+                                    <td>@item.CalisanDetay.Yetki.YetkiAdi</td>
+                                }
+                            }
                             <td>
                                 @if (calisanDetayConcrete._calisanDetayRepository.GetById(item.CalisanID) == null)
                                 {
@@ -42,7 +58,16 @@
                                 {
                                     <a href="@Url.Action("CalisanDuzenle","Calisan",new { id = item.CalisanID})" class="btn btn-info">Duzenle</a>
                                 }
-                                <a href="@Url.Action("CalisanSil","Calisan",new { id = item.CalisanID})" class="btn btn-danger">Sil</a>
+
+                                @if (TelefonRehberi.BLL.Controls.YetkiKontrol.KullaniciSil(item))
+                                {
+                                    <a href="@Url.Action("CalisanSil","Calisan",new { id = item.CalisanID})" class="btn btn-danger">Sil</a>
+                                }
+                                else
+                                {
+                                    <input type="button" class="btn btn-default" value="Silinemez" />
+                                }
+
                             </td>
                         </tr>
                     }

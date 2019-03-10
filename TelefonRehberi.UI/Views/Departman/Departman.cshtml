@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TelefonRehberi.DATA.Entities.Departman>
+@{
+    ViewBag.Title = "Departman";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Departman Listesi</h2>
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Departman Adi</th>
+                    <th>Departman Islemleri</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+
+                    var departmanConcrete = new TelefonRehberi.BLL.Repository.Concrete.DepartmanConcrete();
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.DepartmanAdi</td>
+                            <td>
+                                <a href="@Url.Action("DepartmanDuzenle","Departman",new { id = item.DepartmanID})" class="btn btn-info">Departman Düzenle</a>
+                                <a href="@Url.Action("DepartmanSil","Departman",new { id = item.DepartmanID})" class="btn btn-info">Departman Sil</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <a href="@Url.Action("DepartmanEkle","Departman")" class="btn btn-info">Calisan Detay Ekle</a>
+    </div>
+</div>
+
