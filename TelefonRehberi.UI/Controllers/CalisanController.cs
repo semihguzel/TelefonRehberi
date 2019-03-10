@@ -12,6 +12,8 @@ namespace TelefonRehberi.UI.Controllers
     {
         CalisanConcrete calisanConcrete;
         CalisanDetayConcrete calisanDetayConcrete;
+        DepartmanConcrete departmanConcrete;
+        YetkiConcrete yetkiConcrete;
         public ActionResult CalisanDetayi(int id)
         {
             //TODO : View'i yapilmadi
@@ -57,6 +59,55 @@ namespace TelefonRehberi.UI.Controllers
                 calisanConcrete._calisanUnitOfWork.Dispose();
 
                 calisanDetayConcrete._calisanDetayRepository.Insert(calisanDetay);
+                calisanDetayConcrete._calisanDetayUnitOfWork.SaveChanges();
+                calisanDetayConcrete._calisanDetayUnitOfWork.Dispose();
+
+                return RedirectToAction("Index", "Yonetici");
+            }
+        }
+
+        public ActionResult CalisanDuzenle(int id)
+        {
+            calisanConcrete = new CalisanConcrete();
+            departmanConcrete = new DepartmanConcrete();
+            yetkiConcrete = new YetkiConcrete();
+
+            ViewBag.DepartmanListesi = departmanConcrete._departmanRepository.GetAll();
+            ViewBag.YetkiListesi = yetkiConcrete._yetkiRepository.GetAll();
+
+            return View(calisanConcrete._calisanRepository.GetById(id));
+        }
+        [HttpPost]
+        public ActionResult CalisanDuzenle(int id, FormCollection frm)
+        {
+            var temp = frm["CalisanDetay.Cinsiyet"];
+
+            calisanConcrete = new CalisanConcrete();
+            calisanDetayConcrete = new CalisanDetayConcrete();
+
+            var calisan = calisanConcrete._calisanRepository.GetById(Convert.ToInt32(frm["CalisanID"]));
+
+            calisan.CalisanAdi = frm["CalisanAdi"];
+            calisan.CalisanSoyadi = frm["CalisanSoyadi"];
+            calisan.Telefon = frm["Telefon"];
+
+            var calisanDetay = calisanDetayConcrete._calisanDetayRepository.GetById(calisan.CalisanID);
+
+            calisanDetay.Cinsiyet = frm["CalisanDetay.Cinsiyet"] == "false" ? false : true;
+            calisanDetay.Adres = frm["CalisanDetay.Adres"];
+            calisanDetay.DepartmanID = int.Parse(frm["CalisanDetay.DepartmanID"]);
+            calisanDetay.YetkiID = int.Parse(frm["CalisanDetay.YetkiID"]);
+            calisanDetay.CalisanID = calisan.CalisanID;
+
+            if (calisan.Telefon.Length > 13)
+            {
+                return RedirectToAction("CalisanDuzenle",new {id = calisan.CalisanID });
+            }
+            else
+            {
+                calisanConcrete._calisanUnitOfWork.SaveChanges();
+                calisanConcrete._calisanUnitOfWork.Dispose();
+
                 calisanDetayConcrete._calisanDetayUnitOfWork.SaveChanges();
                 calisanDetayConcrete._calisanDetayUnitOfWork.Dispose();
 

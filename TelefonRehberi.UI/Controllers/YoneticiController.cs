@@ -13,6 +13,7 @@ namespace TelefonRehberi.UI.Controllers
         public ActionResult Index()
         {
             CalisanConcrete calisanConcrete = new CalisanConcrete();
+
             return View(calisanConcrete._calisanRepository.GetAll());
         }
 

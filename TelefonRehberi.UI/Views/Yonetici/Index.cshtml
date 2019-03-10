@@ -34,8 +34,15 @@
                             <td>@item.CalisanSoyadi</td>
                             <td>@item.Telefon</td>
                             <td>
-                                <a href="@Url.Action("CalisanDuzenle","Calisan",item.CalisanID)" class="btn btn-info">Duzenle</a>
-                                <a href="@Url.Action("CalisanSil","Calisan",item.CalisanID)" class="btn btn-danger">Sil</a>
+                                @if (calisanDetayConcrete._calisanDetayRepository.GetById(item.CalisanID) == null)
+                                {
+                                    <a href="@Url.Action("CalisanDuzenle","Calisan",new { id = item.CalisanID})" class="btn btn-info">Calisan Detay Ekle</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("CalisanDuzenle","Calisan",new { id = item.CalisanID})" class="btn btn-info">Duzenle</a>
+                                }
+                                <a href="@Url.Action("CalisanSil","Calisan",new { id = item.CalisanID})" class="btn btn-danger">Sil</a>
                             </td>
                         </tr>
                     }

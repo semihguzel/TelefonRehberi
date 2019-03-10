@@ -1,0 +1,115 @@
+﻿@model TelefonRehberi.DATA.Entities.Calisan
+@{
+    ViewBag.Title = "CalisanDuzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Calisani Duzenle</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @using (Html.BeginForm("CalisanDuzenle", "Calisan", FormMethod.Post))
+        {
+            @Html.HiddenFor(x => x.CalisanID);
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>İsim: </label>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(x => x.CalisanAdi, new { @class = "form-control", @placeholder = "Isim giriniz...", @required = "required" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Soyisim: </label>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(x => x.CalisanSoyadi, new { @class = "form-control", @placeholder = "Soysim giriniz...", @required = "required" })
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Telefon: </label>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(x => x.Telefon, new { @class = "form-control", @placeholder = "Telefon giriniz...", @required = "required" })
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Cinsiyet: </label>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(x => x.CalisanDetay.Cinsiyet)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Adres: </label>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(x => x.CalisanDetay.Adres, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Departman Adi: </label>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(x => x.CalisanDetay.DepartmanID, new SelectList(ViewBag.DepartmanListesi, "DepartmanID", "DepartmanAdi"))
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Yetkisi: </label>
+                    </div>
+                    <div class="col-md-10">
+
+                        @Html.DropDownListFor(x => x.CalisanDetay.YetkiID, new SelectList(ViewBag.YetkiListesi, "YetkiID", "YetkiAdi"))
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-2">
+                        <input type="submit" value="Kaydet" class="form-control btn btn-success" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <a href="@Url.Action("Index","Yonetici")" style="float:left; width:150%" class="btn btn-info">Listeye Geri Don</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
