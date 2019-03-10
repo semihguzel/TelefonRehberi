@@ -25,15 +25,22 @@
                         <tr>
                             <td>@item.DepartmanAdi</td>
                             <td>
-                                <a href="@Url.Action("DepartmanDuzenle","Departman",new { id = item.DepartmanID})" class="btn btn-info">Departman Düzenle</a>
-                                <a href="@Url.Action("DepartmanSil","Departman",new { id = item.DepartmanID})" class="btn btn-info">Departman Sil</a>
+                                <a href="@Url.Action("DepartmanGuncelle","Departman",new { id = item.DepartmanID})" class="btn btn-info">Departman Düzenle</a>
+                                @if (TelefonRehberi.BLL.Controls.DepartmanKontrol.DepartmanSil(item))
+                                {
+                                    <a href="@Url.Action("DepartmanSil","Departman",new { id = item.DepartmanID})" class="btn btn-info">Departman Sil</a>
+                                }
+                                else
+                                {
+                                    <input type="button" class="btn btn-default" value="Silinemez" />
+                                }
                             </td>
                         </tr>
                     }
                 }
             </tbody>
         </table>
-        <a href="@Url.Action("DepartmanEkle","Departman")" class="btn btn-info">Calisan Detay Ekle</a>
+        <a href="@Url.Action("DepartmanEkle","Departman")" class="btn btn-info">Departman Ekle</a>
     </div>
 </div>
 

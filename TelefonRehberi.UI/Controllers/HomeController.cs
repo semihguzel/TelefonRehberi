@@ -19,7 +19,7 @@ namespace TelefonRehberi.UI.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Index", "Yonetici");
             }
         }
     }

@@ -31,5 +31,9 @@ namespace TelefonRehberi.BLL.Repository.Concrete
             else
                 return true;
         }
+        public int GetIDByName(string name)
+        {
+            return _yoneticiRepository.GetEntity().FirstOrDefault(x => x.KullaniciAdi == name).YoneticiID;
+        }
     }
 }

@@ -38,7 +38,9 @@
                                 }
                                 else
                                 {
-                                    <li><a href="@Url.Action("YoneticiGuncelle","Yonetici")">@Session["KullaniciAdi"]<span class="sr-only">(current)</span></a></li>
+                                    var yoneticiConcrete = new TelefonRehberi.BLL.Repository.Concrete.YoneticiConcrete();
+                                    <li><a href="@Url.Action("YoneticiGuncelle","Yonetici", new { id = yoneticiConcrete.GetIDByName(Session["KullaniciAdi"].ToString())})">@Session["KullaniciAdi"]<span class="sr-only">(current)</span></a></li>
+                                    <li><a href="@Url.Action("Cikis","Yonetici")">Çıkış<span class="sr-only">(current)</span></a></li>
                                 }
                             }
 

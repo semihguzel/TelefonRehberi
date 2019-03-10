@@ -21,6 +21,7 @@ namespace TelefonRehberi.UI.Controllers
             var calisan = calisanDetayConcrete._calisanDetayRepository.GetById(id);
             return View(calisan);
         }
+
         [HttpGet]
         public ActionResult CalisanEkle()
         {

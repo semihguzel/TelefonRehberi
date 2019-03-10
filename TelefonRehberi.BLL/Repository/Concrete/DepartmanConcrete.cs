@@ -22,5 +22,10 @@ namespace TelefonRehberi.BLL.Repository.Concrete
             _departmanUnitOfWork = new EFUnitOfWork(_dbContext);
             _departmanRepository = _departmanUnitOfWork.GetRepository<Departman>();
         }
+
+        public Departman GetByName(string name)
+        {
+            return _departmanRepository.GetEntity().FirstOrDefault(x => x.DepartmanAdi == name);
+        }
     }
 }

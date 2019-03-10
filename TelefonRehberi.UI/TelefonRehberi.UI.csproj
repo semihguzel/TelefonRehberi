@@ -139,7 +139,11 @@
     <Content Include="Views\Calisan\CalisanDetay.cshtml" />
     <Content Include="Views\Yonetici\Giris.cshtml" />
     <Content Include="Views\Calisan\CalisanDuzenle.cshtml" />
-    <Content Include="Views\Departman\Departman.cshtml" />
+    <Content Include="Views\Departman\DepartmanIndex.cshtml" />
+    <Content Include="Views\Departman\DepartmanEkle.cshtml" />
+    <Content Include="Views\Departman\DepartmanGuncelle.cshtml" />
+    <Content Include="Views\Calisan\CalisanDetayi.cshtml" />
+    <Content Include="Views\Yonetici\YoneticiGuncelle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

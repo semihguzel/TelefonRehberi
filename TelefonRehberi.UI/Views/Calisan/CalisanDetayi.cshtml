@@ -1,0 +1,57 @@
+﻿@model TelefonRehberi.DATA.Entities.CalisanDetay
+@{
+    ViewBag.Title = "CalisanDetayi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">CalisanDetayi</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Calisan Adi</th>
+                    <th>Calisan Soyadi</th>
+                    <th>Calisan Telefonu</th>
+                    <th>Calisan Departmani</th>
+                    <th>Calisan Yetkisi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var calisanDetayConcrete = new TelefonRehberi.BLL.Repository.Concrete.CalisanDetayConcrete();
+
+                        var calisanDetay = calisanDetayConcrete._calisanDetayRepository.GetById(Model.CalisanID);
+                        <tr>
+                            @if (calisanDetayConcrete._calisanDetayRepository.GetById(Model.CalisanID) != null)
+                            {
+                                <td><a href="@Url.Action("CalisanDetayi","Calisan",new { id = Model.CalisanID})">@Model.Calisan.CalisanAdi</a></td>
+                            }
+                            else
+                            {
+                                <td><span>@Model.Calisan.CalisanAdi</span></td>
+                            }
+                            <td>@Model.Calisan.CalisanSoyadi</td>
+                            <td>@Model.Calisan.Telefon</td>
+                            @{
+
+                                if (calisanDetay == null)
+                                {
+                                    <td>-</td>
+                                    <td>-</td>
+                                }
+                                else
+                                {
+                                    <td>@Model.Departman.DepartmanAdi</td>
+                                    <td>@Model.Yetki.YetkiAdi</td>
+                                }
+                            }
+                        </tr>
+                }
+            </tbody>
+        </table>
+        <a style="float:right" href="@Url.Action("Index","Home")" class="btn btn-success">Listeye Geri Dön</a>
+    </div>
+</div>
+

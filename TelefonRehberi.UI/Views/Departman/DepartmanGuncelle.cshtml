@@ -1,0 +1,43 @@
+﻿@model TelefonRehberi.DATA.Entities.Departman
+@{
+    ViewBag.Title = "DepartmanGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;">Departman Guncelle</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @using (Html.BeginForm("DepartmanGuncelle", "Departman", FormMethod.Post))
+        {
+            @Html.HiddenFor(x => x.DepartmanID);
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>İsim: </label>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(x => x.DepartmanAdi, new { @class = "form-control", @placeholder = "Departman İsmi giriniz...", @required = "required" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-2">
+                        <input type="submit" value="Güncelle" class="form-control btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <a href="@Url.Action("DepartmanIndex","Departman")" style="float:left; width:150%" class="btn btn-info">Listeye Geri Don</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
