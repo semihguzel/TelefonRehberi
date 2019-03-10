@@ -15,8 +15,6 @@ namespace TelefonRehberi.DATA.Entities
         public int DepartmanID { get; set; }
         public virtual Departman Departman { get; set; }
 
-        public int YetkiID { get; set; }
-        public virtual Yetki Yetki { get; set; }
 
         public virtual Calisan Calisan { get; set; }
     }

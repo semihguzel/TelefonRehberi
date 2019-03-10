@@ -18,9 +18,6 @@ namespace TelefonRehberi.DAL.Mappings
             Property(x => x.Adres).HasMaxLength(500);
 
             HasRequired(x => x.Departman).WithMany(x => x.CalisanDetaylari).HasForeignKey(x => x.DepartmanID);
-
-            HasRequired(x => x.Yetki).WithMany(x => x.CalisanDetaylari).HasForeignKey(x => x.YetkiID);
-
         }
     }
 }

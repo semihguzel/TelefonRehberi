@@ -20,7 +20,6 @@ namespace TelefonRehberi.DAL
         public DbSet<Calisan> Calisanlar { get; set; }
         public DbSet<CalisanDetay> CalisanDetaylari { get; set; }
         public DbSet<Yonetici> Yoneticiler { get; set; }
-        public DbSet<Yetki> Yetkiler { get; set; }
         public DbSet<Departman> Departmanlar { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -29,7 +28,6 @@ namespace TelefonRehberi.DAL
             modelBuilder.Configurations.Add(new CalisanDetayMapping());
             modelBuilder.Configurations.Add(new YoneticiMapping());
             modelBuilder.Configurations.Add(new DepartmanMapping());
-            modelBuilder.Configurations.Add(new YetkiMapping());
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);
         }

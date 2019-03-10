@@ -50,22 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\DepartmanKontrol.cs" />
-    <Compile Include="Controls\YetkiKontrol.cs" />
-    <Compile Include="Enums\YetkiTipleri.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Abstract\ICalisan.cs" />
     <Compile Include="Repository\Abstract\ICalisanDetay.cs" />
     <Compile Include="Repository\Abstract\IDepartman.cs" />
     <Compile Include="Repository\Abstract\IRepository.cs" />
     <Compile Include="Repository\Abstract\IUnitOfWork.cs" />
-    <Compile Include="Repository\Abstract\IYetki.cs" />
     <Compile Include="Repository\Abstract\IYonetici.cs" />
     <Compile Include="Repository\Concrete\CalisanConcrete.cs" />
     <Compile Include="Repository\Concrete\CalisanDetayConcrete.cs" />
     <Compile Include="Repository\Concrete\DepartmanConcrete.cs" />
     <Compile Include="Repository\Concrete\EFRepository.cs" />
     <Compile Include="Repository\Concrete\EFUnitOfWork.cs" />
-    <Compile Include="Repository\Concrete\YetkiConcrete.cs" />
     <Compile Include="Repository\Concrete\YoneticiConcrete.cs" />
   </ItemGroup>
   <ItemGroup />

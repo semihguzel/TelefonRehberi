@@ -52,7 +52,6 @@
     <Compile Include="Entities\Calisan.cs" />
     <Compile Include="Entities\CalisanDetay.cs" />
     <Compile Include="Entities\Departman.cs" />
-    <Compile Include="Entities\Yetki.cs" />
     <Compile Include="Entities\Yonetici.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -13,7 +13,6 @@ namespace TelefonRehberi.UI.Controllers
         CalisanConcrete calisanConcrete;
         CalisanDetayConcrete calisanDetayConcrete;
         DepartmanConcrete departmanConcrete;
-        YetkiConcrete yetkiConcrete;
         public ActionResult CalisanDetayi(int id)
         {
             //TODO : View'i yapilmadi
@@ -43,7 +42,6 @@ namespace TelefonRehberi.UI.Controllers
                 Cinsiyet = frm["gender"] == "false" ? false : true,
                 Adres = frm["address"],
                 DepartmanID = int.Parse(frm["departmentId"]),
-                YetkiID = int.Parse(frm["authorizationId"]),
             };
             if (calisan.Telefon.Length > 13)
             {
@@ -72,10 +70,8 @@ namespace TelefonRehberi.UI.Controllers
         {
             calisanConcrete = new CalisanConcrete();
             departmanConcrete = new DepartmanConcrete();
-            yetkiConcrete = new YetkiConcrete();
 
             ViewBag.DepartmanListesi = departmanConcrete._departmanRepository.GetAll();
-            ViewBag.YetkiListesi = yetkiConcrete._yetkiRepository.GetAll();
 
             return View(calisanConcrete._calisanRepository.GetById(id));
         }
@@ -97,7 +93,6 @@ namespace TelefonRehberi.UI.Controllers
             calisanDetay.Cinsiyet = frm["CalisanDetay.Cinsiyet"] == "false" ? false : true;
             calisanDetay.Adres = frm["CalisanDetay.Adres"];
             calisanDetay.DepartmanID = int.Parse(frm["CalisanDetay.DepartmanID"]);
-            calisanDetay.YetkiID = int.Parse(frm["CalisanDetay.YetkiID"]);
 
             if (calisan.Telefon.Length > 13)
             {

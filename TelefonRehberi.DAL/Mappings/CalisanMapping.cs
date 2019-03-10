@@ -18,8 +18,10 @@ namespace TelefonRehberi.DAL.Mappings
             Property(x => x.CalisanAdi).HasMaxLength(75).IsRequired();
             Property(x => x.CalisanSoyadi).HasMaxLength(75).IsRequired();
             Property(x => x.Telefon).HasColumnType("nchar").HasMaxLength(13).IsRequired();
+            Property(x => x.UstCalisanID).IsOptional();
 
             HasRequired(x => x.CalisanDetay).WithRequiredPrincipal(x => x.Calisan);
+
         }
     }
 }

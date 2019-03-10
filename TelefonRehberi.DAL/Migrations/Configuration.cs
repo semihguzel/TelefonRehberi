@@ -22,11 +22,6 @@ namespace TelefonRehberi.DAL.Migrations
                 context.Yoneticiler.Add(new Yonetici() { KullaniciAdi = "admin", Sifre = "123", AktifMi = true });
                 context.SaveChanges();
             }
-            if (context.Yetkiler.ToList().Count == 0)
-            {
-                context.Yetkiler.AddRange(new List<Yetki>() { new Yetki() { YetkiAdi = "Müdür" }, new Yetki() { YetkiAdi = "Uzman" }, new Yetki() { YetkiAdi = "Stajyer" } } );
-                context.SaveChanges();
-            }
         }
     }
 }
